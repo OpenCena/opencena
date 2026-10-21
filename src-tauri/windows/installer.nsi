@@ -675,6 +675,22 @@ Section Install
     !insertmacro NSIS_HOOK_PREINSTALL
   !endif
 
+  ; Na atualização automática o app se fecha sozinho logo depois de abrir o
+  ; instalador. Espera ele terminar de fechar (até 5 s) antes de verificar,
+  ; senão a verificação tenta fechar um processo que já está saindo e desiste.
+  ${If} $UpdateMode = 1
+    StrCpy $R9 0
+    oc_espera_app:
+      nsis_tauri_utils::FindProcess "${MAINBINARYNAME}.exe"
+      Pop $R8
+      ${If} $R8 = 0
+      ${AndIf} $R9 < 20
+        Sleep 250
+        IntOp $R9 $R9 + 1
+        Goto oc_espera_app
+      ${EndIf}
+  ${EndIf}
+
   !insertmacro CheckIfAppIsRunning "$INSTDIR\${MAINBINARYNAME}.exe" "${PRODUCTNAME}"
 
   ; Copy main executable

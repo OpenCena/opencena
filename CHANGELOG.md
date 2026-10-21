@@ -2,6 +2,12 @@
 
 Mudanças de cada versão do OpenCena. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e as versões seguem o [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [0.9.2] - 2026-10 · Beta
+
+### Correções
+
+- Atualização automática no Windows: o instalador agora espera o OpenCena terminar de fechar antes de continuar. Antes, podia parar com "Falha ao fechar OpenCena".
+
 ## [0.9.1] - 2026-10 · Beta
 
 ### Instalação
@@ -58,5 +64,6 @@ Primeira versão pública. **É uma beta:** já dá para escrever de verdade, ma
 - Tema claro e escuro.
 - Testes automáticos e verificação contínua no GitHub Actions.
 
+[0.9.2]: https://github.com/OpenCena/opencena/releases/tag/v0.9.2
 [0.9.1]: https://github.com/OpenCena/opencena/releases/tag/v0.9.1
 [0.9.0]: https://github.com/OpenCena/opencena/releases/tag/v0.9.0
