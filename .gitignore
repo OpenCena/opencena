@@ -1,0 +1,33 @@
+# Dependências e builds
+node_modules
+dist
+dist-ssr
+*.tsbuildinfo
+*.local
+
+# Tauri (app instalado)
+src-tauri/target
+src-tauri/gen/schemas
+
+# Chaves de assinatura (nunca vão para o repositório)
+*.key
+*.key.pub
+.env
+.env.*
+
+# Site (publicado à parte)
+site/
+
+# Capturas de tela geradas por scripts/capturas.mjs
+.capturas/
+
+# Configurações locais de editores
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

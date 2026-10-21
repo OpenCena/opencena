@@ -1,0 +1,22 @@
+name: Tradução / Translation
+description: Texto errado, estranho ou faltando em algum idioma. A wrong, odd or missing translation.
+labels: ["tradução"]
+body:
+  - type: dropdown
+    id: idioma
+    attributes:
+      label: Idioma / Language
+      options:
+        - English
+        - Español
+        - Português
+        - Outro / Other
+    validations:
+      required: true
+  - type: textarea
+    id: texto
+    attributes:
+      label: Texto atual e sugestão / Current text and suggestion
+      description: Onde aparece, o texto atual e como deveria ficar. Se preferir, mande direto um pull request (veja docs/TRADUZIR.md).
+    validations:
+      required: true

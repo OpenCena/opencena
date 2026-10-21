@@ -1,0 +1,443 @@
+/* Bíblia do projeto, layout mestre/detalhe usado por personagens, locais e */
+
+.bible {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+}
+
+/* lista (coluna esquerda) */
+.bible-list {
+  width: 236px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg-panel);
+}
+.bible-list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.bible-list-head h3 {
+  margin: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  font-weight: 600;
+}
+.bible-items {
+  overflow: auto;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.bible-item {
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+.bible-item:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.bible-item.active {
+  background: var(--bg-hover);
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* detalhe (coluna direita) */
+.bible-detail {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+}
+.bible-form {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 32px 120px;
+}
+.bible-form h2 {
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.bible-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+.bible-empty {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--text-faint);
+  font-size: 13px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-panel);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 5px;
+  cursor: pointer;
+}
+.icon-btn:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+.icon-btn.danger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* relações de personagem */
+.rel-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.rel-row select,
+.rel-row input {
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-input);
+  color: var(--text);
+  outline: none;
+}
+.rel-row select:focus,
+.rel-row input:focus {
+  border-color: var(--accent);
+}
+
+/* responsivo: empilha lista e ficha em telas estreitas */
+@media (max-width: 720px) {
+  .bible {
+    flex-direction: column;
+  }
+  .bible-list {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 34vh;
+  }
+  .bible-form {
+    padding: 20px 18px 100px;
+  }
+  .bible-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* fichas (personagens, locais, objetos) */
+.bb-count {
+  font-weight: 500;
+  color: var(--text-faint);
+  margin-left: 4px;
+}
+.bb-search {
+  margin: 8px 8px 0;
+}
+.bb-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 8px;
+}
+.bb-thumb {
+  flex-shrink: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.bb-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bb-row-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.bb-row-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bb-row-sub {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bible-detail.drop {
+  outline: 2px dashed var(--text-faint);
+  outline-offset: -10px;
+}
+.bb-form {
+  max-width: 760px;
+}
+.bb-head {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.bb-photo {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px dashed var(--border-strong);
+  background: var(--bg-hover);
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+}
+.bb-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bb-head-main {
+  flex: 1;
+  min-width: 0;
+}
+.bb-label {
+  font-size: 11px;
+  color: var(--text-faint);
+  display: block;
+  margin-bottom: 2px;
+}
+.bb-name {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  padding: 0;
+}
+.bb-name::placeholder {
+  color: var(--text-faint);
+  font-weight: 500;
+}
+.bb-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  align-items: center;
+}
+.bb-stats b {
+  color: var(--text);
+  font-weight: 600;
+}
+.bb-first {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bb-first:hover {
+  color: var(--text);
+}
+.bb-sec {
+  padding: 18px 0 6px;
+  border-bottom: 1px solid var(--border);
+}
+.bb-sec:last-of-type {
+  border-bottom: none;
+}
+.bb-sec-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.bb-hint {
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-faint);
+}
+.bb-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+.bb-fields > .field {
+  flex: 1 1 100%;
+}
+.bb-fields > .field.half {
+  flex: 1 1 calc(50% - 8px);
+}
+.bb-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.bb-img {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+}
+.bb-img.main {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.bb-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in;
+  display: block;
+}
+.bb-img-acts {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: none;
+  gap: 2px;
+}
+.bb-img:hover .bb-img-acts {
+  display: flex;
+}
+.bb-img-acts button {
+  border: none;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 4px;
+  display: inline-flex;
+}
+.bb-img-acts button.on {
+  background: #fff;
+  color: #000;
+}
+.bb-add-img {
+  aspect-ratio: 1;
+  border: 1px dashed var(--border-strong);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+}
+.bb-add-img:hover {
+  color: var(--text);
+  border-color: var(--text-faint);
+}
+.bb-scenes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.bb-scene {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 3px 10px 3px 4px;
+  font-size: 12px;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bb-scene:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+.bb-scene-n {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--bg-hover);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+}
+.bb-form .lr {
+  border-top: none;
+  margin-top: 4px;
+}
+@media (max-width: 720px) {
+  .bb-fields > .field.half {
+    flex-basis: 100%;
+  }
+  .bb-photo {
+    width: 72px;
+    height: 72px;
+  }
+}

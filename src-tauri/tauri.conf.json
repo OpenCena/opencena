@@ -1,0 +1,69 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "OpenCena",
+  "version": "0.9.0",
+  "identifier": "br.com.opencena",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:3000",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "OpenCena",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 900,
+        "minHeight": 600,
+        "center": true,
+        "resizable": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "publisher": "OpenCena",
+    "copyright": "© 2026 Colaboradores do OpenCena. Licença GPL-3.0-or-later.",
+    "license": "GPL-3.0-or-later",
+    "licenseFile": "../LICENSE",
+    "category": "Productivity",
+    "shortDescription": "Roteiro, quadrinhos e livros, offline.",
+    "longDescription": "Editor gratuito e offline para roteiro de cinema e série, roteiro de quadrinhos e livros. Seus projetos ficam em pastas no seu computador.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "languages": [
+          "PortugueseBR",
+          "English"
+        ],
+        "displayLanguageSelector": false
+      }
+    },
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJFMEQyODc2Rjk2QkU5RUEKUldUcTZXdjVkaWdOdmo4MlRWWUhtdmJMQWlieStMNVVicXB3R3lrcXh6Nms3TnVES3BNUEFDMWoK",
+      "endpoints": [
+        "https://github.com/OpenCena/opencena/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  }
+}

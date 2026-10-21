@@ -1,0 +1,99 @@
+# Gera os instaladores do OpenCena para Windows, macOS e Linux.
+#
+# Como usar:
+#   1. Suba o projeto para um repositório no GitHub.
+#   2. Crie uma tag de versão e envie:  git tag v0.1.0 && git push origin v0.1.0
+#      (ou rode manualmente em Actions > "Publicar app" > Run workflow)
+#   3. Em uns 15 a 25 minutos aparece um rascunho em Releases com os arquivos:
+#        Windows  OpenCena_x.y.z_x64-setup.exe e .msi
+#        macOS    OpenCena_x.y.z_aarch64.dmg (Apple Silicon) e _x64.dmg (Intel)
+#        Linux    OpenCena_x.y.z_amd64.AppImage e .deb
+#   4. Revise o rascunho e clique em "Publish release".
+#
+# A versão vem de src-tauri/tauri.conf.json ("version").
+#
+# Atualização automática: o app instalado procura o arquivo latest.json da
+# última versão publicada. Para isso a compilação precisa assinar os
+# instaladores com a chave privada do projeto. Em Settings > Secrets and
+# variables > Actions do repositório, crie:
+#   TAURI_SIGNING_PRIVATE_KEY           conteúdo do arquivo da chave privada
+#   TAURI_SIGNING_PRIVATE_KEY_PASSWORD  senha da chave (vazio se não tiver)
+# A chave pública correspondente já está em src-tauri/tauri.conf.json.
+
+name: Publicar app
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+            args: ""
+          - platform: macos-latest
+            args: "--target aarch64-apple-darwin"
+          - platform: macos-latest
+            args: "--target x86_64-apple-darwin"
+          - platform: ubuntu-22.04
+            args: ""
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dependências do Linux (WebKitGTK)
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          # o Mac compila as duas arquiteturas (Apple Silicon e Intel)
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: "./src-tauri -> target"
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Compilar e anexar ao rascunho da versão
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          tagName: v__VERSION__
+          releaseName: "OpenCena v__VERSION__ beta"
+          releaseBody: |
+            **Versão beta.** Já dá para escrever de verdade, mas ainda pode ter erros. Faça uma cópia da sua pasta de projetos antes de atualizar.
+            Baixe o instalador do seu sistema na lista abaixo. Quem já tem o app instalado recebe a atualização automaticamente.
+            Novidades: [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)
+
+            **Beta version.** You can already write for real, but there may still be bugs. Back up your projects folder before updating.
+            Download the installer for your system below. If the app is already installed, it updates automatically.
+          # o latest.json usado pela atualização automática vai junto
+          includeUpdaterJson: true
+          releaseDraft: true
+          # Não marcar como "pre-release": o endereço releases/latest, usado pela
+          # atualização automática e pelos botões de download do site, ignora
+          # pre-releases. O aviso de beta vai no nome e no texto da versão.
+          prerelease: false
+          args: ${{ matrix.args }}

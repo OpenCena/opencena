@@ -1,0 +1,91 @@
+/* Command palette (Ctrl+K) e busca global. */
+
+.cmd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 12vh;
+  z-index: 200;
+}
+
+.cmd {
+  width: 560px;
+  max-width: calc(100% - 32px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 60vh;
+}
+
+.cmd-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmd-results {
+  overflow: auto;
+  padding: 6px;
+}
+
+.cmd-group-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  font-weight: 600;
+  padding: 8px 10px 4px;
+}
+
+.cmd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 13.5px;
+}
+.cmd-item .cmd-ico {
+  color: var(--text-faint);
+  display: inline-flex;
+  flex-shrink: 0;
+}
+.cmd-item.active {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.cmd-item.active .cmd-ico {
+  color: var(--text);
+}
+.cmd-item .cmd-snippet {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cmd-item .cmd-tag {
+  margin-left: auto;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+.cmd-empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 13px;
+}

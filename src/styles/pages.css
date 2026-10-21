@@ -1,0 +1,145 @@
+/* Visualização de páginas (estilo Word): folhas separadas sobre um fundo */
+
+.pv-canvas {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  background: var(--canvas);
+  padding: 24px 24px 40vh;
+  position: relative;
+}
+@media (max-width: 760px) {
+  .pv-canvas {
+    padding: 12px 8px 40vh;
+  }
+}
+.pv-zoomer {
+  position: relative;
+  margin: 0 auto;
+}
+.pv-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+.pv-sheet {
+  position: absolute;
+  background: var(--paper);
+  box-shadow: var(--sheet-shadow);
+  pointer-events: none;
+}
+.pv-sheet.blank {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--paper),
+    var(--paper) 10px,
+    var(--paper-alt) 10px,
+    var(--paper-alt) 11px
+  );
+}
+.pv-furn {
+  position: absolute;
+  white-space: nowrap;
+  color: var(--text-muted);
+  user-select: none;
+}
+.pv-blank-tag {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pv-flow {
+  position: absolute;
+  top: 0;
+  color: var(--text);
+}
+.pv-flow .ProseMirror {
+  outline: none;
+  min-height: var(--pv-min, 0px);
+}
+.pv-flow .ProseMirror ::selection {
+  background: var(--selection);
+}
+.pv-flow .ProseMirror-gapcursor {
+  display: none !important;
+}
+
+/* blocos */
+.pv-flow .blk {
+  position: relative;
+}
+.pv-measure .blk {
+  padding-top: 0 !important;
+}
+
+/* espaçador da quebra de página */
+.pg-spacer {
+  display: block;
+  position: relative;
+  user-select: none;
+  cursor: default;
+  text-indent: 0;
+}
+.pg-spacer.pg-inline {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+.pg-more,
+.pg-cont {
+  position: absolute;
+  top: 0;
+  white-space: pre;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-style: normal;
+  text-align: left;
+  color: var(--text);
+}
+.kind-roteiro .pg-cont {
+  font-weight: 700;
+}
+
+/* margem: número da cena (roteiro), número do balão (HQ), info da página (HQ) */
+.kind-roteiro .blk[data-scene]::after {
+  content: attr(data-scene);
+  position: absolute;
+  left: -0.62in;
+  top: var(--sb, 0px);
+  font-weight: 700;
+  color: var(--text-faint);
+  pointer-events: none;
+}
+.kind-quadrinhos .blk[data-bn]::after {
+  content: attr(data-bn);
+  position: absolute;
+  left: 4mm;
+  top: var(--sb, 0px);
+  color: var(--text-faint);
+  font-weight: 700;
+  font-style: normal;
+  pointer-events: none;
+}
+.kind-quadrinhos .blk[data-info]::after {
+  content: attr(data-info);
+  position: absolute;
+  right: 0;
+  top: var(--sb, 0px);
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-faint);
+  pointer-events: none;
+  white-space: nowrap;
+}

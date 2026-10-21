@@ -1,0 +1,25 @@
+name: Sugestão / Feature request
+description: Uma ideia para o OpenCena, já conversada no fórum. An idea already discussed on the forum.
+labels: ["sugestão"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideias novas costumam começar no [fórum](https://opencena.discourse.group). Abra a issue quando a ideia estiver mais clara.
+        New ideas usually start on the forum.
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qual problema isso resolve / What problem does it solve
+      description: Conte o que você está tentando fazer e onde o OpenCena atrapalha hoje.
+    validations:
+      required: true
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Proposta / Proposal
+      description: Como você imagina que funcione.
+  - type: input
+    id: forum
+    attributes:
+      label: Link da conversa no fórum / Forum thread

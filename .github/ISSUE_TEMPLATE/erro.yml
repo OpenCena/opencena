@@ -1,0 +1,64 @@
+name: Erro / Bug
+description: Algo não funciona como deveria. Something doesn't work as it should.
+labels: ["erro"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por relatar. Antes de enviar, veja se já existe uma issue parecida.
+        Thanks for reporting. Please check for similar issues first.
+  - type: textarea
+    id: o-que
+    attributes:
+      label: O que aconteceu / What happened
+      description: Descreva o erro. Capturas de tela ajudam muito.
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: Como reproduzir / Steps to reproduce
+      placeholder: |
+        1. Abrir um projeto de roteiro
+        2. Ir para Escaleta
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: O que você esperava / Expected behavior
+  - type: input
+    id: versao
+    attributes:
+      label: Versão do OpenCena / Version
+      description: Configurações > Sobre e licença.
+      placeholder: "0.9.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: onde
+    attributes:
+      label: Onde / Where
+      options:
+        - App instalado no Windows
+        - App instalado no macOS
+        - App instalado no Linux
+        - Navegador (Chrome, Edge…)
+    validations:
+      required: true
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de projeto / Project type
+      options:
+        - Roteiro audiovisual / Screenplay
+        - Quadrinhos / Comics
+        - Novel / livro
+        - Não se aplica / N/A
+  - type: checkboxes
+    id: dados
+    attributes:
+      label: Dados / Data
+      options:
+        - label: Perdi texto ou um projeto deixou de abrir (lost text or a project no longer opens)

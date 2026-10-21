@@ -1,0 +1,253 @@
+/* Histórico de versões + painel de comparação (à direita). */
+.hs-wrap {
+  height: 100%;
+  display: flex;
+  min-height: 0;
+}
+.hs-list {
+  flex: 1;
+  overflow: auto;
+  padding: 28px 24px 120px;
+}
+.hs-list > * {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hs-wrap.with-panel .hs-list {
+  flex: 0 0 440px;
+  border-right: 1px solid var(--border);
+}
+.hs-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.hs-top h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.hs-desc {
+  font-size: 13px;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+.hs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px 8px 12px;
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.hs-row.active {
+  background: var(--bg-hover);
+}
+.hs-row .btn {
+  padding: 6px 9px;
+  font-size: 12.5px;
+}
+.hs-row .btn.on {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+.hs-tag {
+  font-size: 11px;
+  margin-left: 8px;
+}
+
+.hd-panel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  background: var(--bg-panel);
+}
+.hd-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px 10px;
+}
+.hd-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.hd-pick {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.hd-pick .sel {
+  width: 200px;
+}
+.hd-from {
+  font-weight: 500;
+}
+.hd-dir {
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+.hd-dir b {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.hd-stats {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  padding: 12px 20px 0;
+}
+.s-add {
+  color: #2e7d4f;
+}
+.s-del {
+  color: var(--danger);
+}
+.s-mod {
+  color: #9a6a12;
+}
+:root[data-theme="dark"] .s-add {
+  color: #6cc28f;
+}
+:root[data-theme="dark"] .s-mod {
+  color: #d8a94a;
+}
+.hd-areas {
+  margin: 12px 20px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12.5px;
+}
+.hd-area {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hd-area b {
+  font-weight: 600;
+  min-width: 84px;
+}
+.hd-toggle {
+  padding: 12px 20px 4px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.hd-toggle label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+.hd-doc {
+  padding: 8px 20px 80px;
+}
+.hd-empty {
+  padding: 24px 20px;
+  color: var(--text-faint);
+  font-size: 13px;
+}
+.hd-block {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 10px;
+  padding: 5px 8px;
+  border-left: 3px solid transparent;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.hd-type {
+  font-size: 10.5px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 3px;
+}
+.hd-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.hd-block.op-add {
+  border-left-color: #2e7d4f;
+  background: rgba(46, 125, 79, 0.08);
+}
+.hd-block.op-del {
+  border-left-color: var(--danger);
+  background: rgba(179, 38, 30, 0.06);
+}
+.hd-block.op-del .hd-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+.hd-block.op-mod {
+  border-left-color: #c89320;
+}
+.hd-block.op-eq {
+  color: var(--text-muted);
+}
+.hd-block ins {
+  text-decoration: none;
+  background: rgba(46, 125, 79, 0.18);
+  border-radius: 2px;
+}
+.hd-block del {
+  color: var(--danger);
+  background: rgba(179, 38, 30, 0.1);
+  border-radius: 2px;
+}
+.hd-note {
+  display: block;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+.hd-block.t-cabecalho .hd-text,
+.hd-block.t-pagina .hd-text,
+.hd-block.t-capitulo .hd-text,
+.hd-block.t-personagem .hd-text {
+  font-weight: 600;
+}
+.hd-skip {
+  font-size: 11.5px;
+  color: var(--text-faint);
+  text-align: center;
+  padding: 4px 0;
+  margin: 4px 0;
+  border-top: 1px dashed var(--border);
+  border-bottom: 1px dashed var(--border);
+}
+@media (max-width: 900px) {
+  .hs-wrap.with-panel {
+    flex-direction: column;
+  }
+  .hs-wrap.with-panel .hs-list {
+    flex: 0 0 auto;
+    max-height: 40%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+.hd-block del + ins {
+  margin-left: 3px;
+}
+.hd-block ins,
+.hd-block del {
+  padding: 0 2px;
+}

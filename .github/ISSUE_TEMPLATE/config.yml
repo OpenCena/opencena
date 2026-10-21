@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Dúvidas, ideias e problemas de uso / Questions and ideas
+    url: https://opencena.discourse.group
+    about: Pergunte e converse no fórum. Ask questions and discuss ideas on the forum.
+  - name: Vulnerabilidade de segurança / Security vulnerability
+    url: https://github.com/OpenCena/opencena/security/advisories/new
+    about: Relate em particular, nunca numa issue pública. Report privately, never in a public issue.

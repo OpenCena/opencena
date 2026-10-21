@@ -1,0 +1,49 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Permissões da janela principal: arquivos do projeto, escolher pasta e abrir o PDF no leitor do sistema.",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    "core:window:allow-destroy",
+    "core:window:allow-close",
+    "dialog:allow-open",
+    "opener:default",
+    {
+      "identifier": "fs:scope",
+      "allow": [
+        {
+          "path": "**"
+        },
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    "fs:allow-exists",
+    "fs:allow-stat",
+    "fs:allow-mkdir",
+    "fs:allow-read-dir",
+    "fs:allow-read-file",
+    "fs:allow-read-text-file",
+    "fs:allow-write-file",
+    "fs:allow-write-text-file",
+    "fs:allow-rename",
+    "fs:allow-remove",
+    {
+      "identifier": "opener:allow-open-path",
+      "allow": [
+        {
+          "path": "**"
+        },
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    "updater:default",
+    "process:allow-restart"
+  ]
+}

@@ -1,0 +1,224 @@
+/* Layout do workspace + responsividade. */
+
+.ws-root {
+  display: flex;
+  height: 100%;
+}
+
+.ws-aside {
+  width: 208px;
+  transition: width 0.16s ease, padding 0.16s ease;
+  flex-shrink: 0;
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.ws-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ws-backdrop {
+  display: none;
+}
+
+.ws-hamburger {
+  display: none;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  margin-right: 6px;
+}
+.ws-hamburger:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+@media (max-width: 760px) {
+  .ws-aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 60;
+    transform: translateX(-100%);
+    transition: transform 0.18s ease;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.25);
+  }
+  .ws-aside.open {
+    transform: translateX(0);
+  }
+  .ws-backdrop.show {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 55;
+  }
+  .ws-hamburger {
+    display: inline-flex;
+  }
+}
+
+/* modo foco: só o editor */
+.ws-root.focus .ws-aside,
+.ws-root.focus .ws-backdrop,
+.ws-root.focus .ws-main > header {
+  display: none !important; /* o cabeçalho tem display inline */
+}
+
+/* itens do menu lateral */
+.ws-aside-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+.ws-navlist {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.ws-sep {
+  height: 1px;
+  background: var(--border);
+  margin: 8px;
+}
+.ws-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: none;
+  text-align: left;
+  background: transparent;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.ws-nav:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.ws-nav.active {
+  background: var(--bg-hover);
+  color: var(--text);
+  font-weight: 500;
+}
+.ws-back {
+  padding: 6px 8px;
+}
+.ws-collapse {
+  position: relative;
+  border: none;
+  background: transparent;
+  color: var(--text-faint);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+}
+.ws-collapse:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.ws-aside-foot {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* recolhido: só ícones */
+.ws-aside.mini {
+  width: 56px;
+  padding: 10px 8px;
+  overflow: visible;
+}
+.ws-aside.mini .ws-label {
+  display: none;
+}
+.ws-aside.mini .ws-aside-top {
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.ws-aside.mini .ws-nav,
+.ws-aside.mini .ws-collapse {
+  justify-content: center;
+  padding: 9px 0;
+  width: 100%;
+}
+.ws-aside.mini .ws-aside-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* dica ao lado do ícone (menu recolhido) */
+.ws-aside.mini [data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 9px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 80;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* marca, projeto e item ativo */
+.ws-logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+}
+.ws-aside.mini .ws-logo {
+  padding: 4px 0 2px;
+}
+.ws-aside-top {
+  margin-bottom: 6px;
+}
+.ws-project {
+  padding: 10px 8px 14px;
+}
+.ws-project-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.3;
+}
+.ws-project-kind {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 3px;
+}
+.ws-nav.active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 7px;
+  bottom: 7px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--brand);
+}
+.ws-aside.mini .ws-nav.active::before {
+  left: -8px;
+}
