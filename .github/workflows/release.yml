@@ -89,6 +89,8 @@ jobs:
 
             **Beta version.** You can already write for real, but there may still be bugs. Back up your projects folder before updating.
             Download the installer for your system below. If the app is already installed, it updates automatically.
+
+            [Code signing policy](https://github.com/${{ github.repository }}#code-signing-policy)
           # o latest.json usado pela atualização automática vai junto
           includeUpdaterJson: true
           releaseDraft: true

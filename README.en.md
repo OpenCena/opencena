@@ -58,6 +58,17 @@ MyProject/
 
 Everything is saved as you write. You can keep your projects in a synced folder (Google Drive, OneDrive, iCloud, Dropbox) to open them on another computer. When the file format changes, the app migrates the project automatically when it opens it.
 
+## Code signing policy
+
+Free code signing provided by [SignPath.io](https://signpath.io), certificate by [SignPath Foundation](https://signpath.org).
+
+The Windows installers are built by GitHub Actions from this repository, and every signed release needs a manual approval.
+
+- **Committers and reviewers** (change the code and review contributions): [members of the OpenCena organization](https://github.com/orgs/OpenCena/people)
+- **Approvers** (approve each signing request): [owners of the OpenCena organization](https://github.com/orgs/OpenCena/people?query=role%3Aowner)
+
+**Privacy:** This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it, except for the update check, which downloads a small file from this repository's releases and can be turned off in Settings.
+
 ## Running the code
 
 Requires Node.js 20 or later.

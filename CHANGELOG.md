@@ -2,6 +2,17 @@
 
 Mudanças de cada versão do OpenCena. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e as versões seguem o [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [0.9.1] - 2026-10 · Beta
+
+### Instalação
+
+- Instalador do Windows com a logo do OpenCena, textos próprios nas telas de boas-vindas e de conclusão, e sem a tela de aceite da licença (a GPL não exige aceite para usar o programa).
+- Instalador do macOS com janela própria para arrastar o app para Aplicativos.
+
+### Projeto
+
+- Política de assinatura de código (code signing policy) no README e no site.
+
 ## [0.9.0] - 2026-10 · Beta
 
 Primeira versão pública. **É uma beta:** já dá para escrever de verdade, mas ainda pode ter erros. Faça cópias da sua pasta de projetos de vez em quando.
@@ -47,4 +58,5 @@ Primeira versão pública. **É uma beta:** já dá para escrever de verdade, ma
 - Tema claro e escuro.
 - Testes automáticos e verificação contínua no GitHub Actions.
 
+[0.9.1]: https://github.com/OpenCena/opencena/releases/tag/v0.9.1
 [0.9.0]: https://github.com/OpenCena/opencena/releases/tag/v0.9.0

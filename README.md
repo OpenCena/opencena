@@ -19,6 +19,17 @@ Os instaladores para Windows (`.exe`, `.msi`), macOS (`.dmg`, Apple Silicon e In
 
 Os instaladores ainda não são assinados: o Windows mostra o aviso do SmartScreen ("Mais informações" > "Executar assim mesmo") e o macOS pede para abrir com o botão direito > "Abrir" na primeira vez.
 
+## Code signing policy
+
+Free code signing provided by [SignPath.io](https://signpath.io), certificate by [SignPath Foundation](https://signpath.org).
+
+Os instaladores para Windows são compilados pelo GitHub Actions a partir deste repositório, e cada versão assinada precisa de aprovação manual.
+
+- **Committers and reviewers** (alteram o código e revisam contribuições): [membros da organização OpenCena](https://github.com/orgs/OpenCena/people)
+- **Approvers** (aprovam cada pedido de assinatura): [administradores da organização OpenCena](https://github.com/orgs/OpenCena/people?query=role%3Aowner)
+
+**Privacidade:** o OpenCena não envia seus textos, projetos ou dados pessoais para lugar nenhum. A única conexão que o app instalado faz sozinho é a busca de atualização no GitHub, que pode ser desligada em Configurações.
+
 ## Rodar o código
 
 Requisito: Node.js 20 ou mais novo.

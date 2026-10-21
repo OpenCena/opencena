@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "OpenCena",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "identifier": "br.com.opencena",
   "build": {
     "frontendDist": "../dist",
@@ -33,7 +33,6 @@
     "publisher": "OpenCena",
     "copyright": "© 2026 Colaboradores do OpenCena. Licença GPL-3.0-or-later.",
     "license": "GPL-3.0-or-later",
-    "licenseFile": "../LICENSE",
     "category": "Productivity",
     "shortDescription": "Roteiro, quadrinhos e livros, offline.",
     "longDescription": "Editor gratuito e offline para roteiro de cinema e série, roteiro de quadrinhos e livros. Seus projetos ficam em pastas no seu computador.",
@@ -50,7 +49,23 @@
           "PortugueseBR",
           "English"
         ],
-        "displayLanguageSelector": false
+        "displayLanguageSelector": false,
+        "template": "windows/installer.nsi",
+        "installerIcon": "icons/icon.ico",
+        "headerImage": "icons/instalador/nsis-cabecalho.bmp",
+        "sidebarImage": "icons/instalador/nsis-lateral.bmp"
+      },
+      "wix": {
+        "bannerPath": "icons/instalador/msi-faixa.bmp",
+        "dialogImagePath": "icons/instalador/msi-boas-vindas.bmp"
+      }
+    },
+    "macOS": {
+      "dmg": {
+        "background": "icons/instalador/dmg-fundo.png",
+        "windowSize": { "width": 660, "height": 400 },
+        "appPosition": { "x": 180, "y": 200 },
+        "applicationFolderPosition": { "x": 480, "y": 200 }
       }
     },
     "createUpdaterArtifacts": true
